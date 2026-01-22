@@ -96,7 +96,9 @@ document.addEventListener('DOMContentLoaded', function() {
     renderTrivia();
     renderMatches();
     renderTeams();
+    renderGroupStandings();
     updateStats();
+    
 });
 
 // Tab switching functionality
@@ -254,6 +256,106 @@ function renderTeams() {
     });
 }
 
+// Helper: Group teams by group letter and sort by FIFA rank (better rank first)
+function getTeamsByGroup() {
+    const groups = {};
+
+    // Initialize empty arrays for groups A–L
+    for (let i = 65; i <= 76; i++) {  // A = 65, L = 76
+        const letter = String.fromCharCode(i);
+        groups[letter] = [];
+    }
+
+    teams.forEach(team => {
+        if (team.group && team.group !== 'TBD') {
+            if (!groups[team.group]) {
+                groups[team.group] = [];
+            }
+            groups[team.group].push(team);
+        }
+    });
+
+    // Sort each group: lower fifa_rank = higher position
+    Object.keys(groups).forEach(key => {
+        groups[key].sort((a, b) => {
+            const rankA = a.fifa_rank ?? 9999;
+            const rankB = b.fifa_rank ?? 9999;
+            return rankA - rankB;
+        });
+    });
+
+    return groups;
+}
+
+function renderGroupStandings() {
+    const container = document.getElementById('standingsList');
+    if (!container) {
+        console.warn("Element #standingsList not found in HTML");
+        return;
+    }
+
+    container.innerHTML = '';
+    const grouped = getTeamsByGroup();
+
+    // Sort groups alphabetically
+    Object.keys(grouped).sort().forEach(groupLetter => {
+        const groupTeams = grouped[groupLetter];
+        if (groupTeams.length === 0) return;
+
+        const section = document.createElement('div');
+        section.className = 'group-section';
+
+        let html = `
+            <h3>Group ${groupLetter}</h3>
+            <table class="standings-table">
+                <thead>
+                    <tr>
+                        <th>Pos</th>
+                        <th>Team</th>
+                        <th>P</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>GF</th>
+                        <th>GA</th>
+                        <th>GD</th>
+                        <th>Pts</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+
+        groupTeams.forEach((team, index) => {
+            const rankDisplay = team.fifa_rank !== null ? `#${team.fifa_rank}` : 'TBD';
+            html += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>
+                        <span class="team-flag-small">${team.flag}</span>
+                        ${team.name}
+                        <small class="fifa-rank">(${rankDisplay})</small>
+                    </td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            `;
+        });
+
+        html += `
+                </tbody>
+            </table>
+        `;
+
+        section.innerHTML = html;
+        container.appendChild(section);
+    });
+}
 // Render user predictions
 function renderUserPredictions() {
     const predictionsList = document.getElementById('userPredictionsList');
