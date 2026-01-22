@@ -65,6 +65,76 @@
             <!-- Schedule Tab -->
             <div id="schedule" class="tab-content">
                 <h2 class="section-title">📅 Match Schedule</h2>
+                
+                <div id="matchList" class="match-list"></div>
+            </div>
+
+            <!-- Teams Tab -->
+            <div id="teams" class="tab-content">
+                <h2 class="section-title">👥 Qualified Teams</h2>
+                <div id="teamsList" class="teams-grid"></div>
+            </div>
+
+            <!-- My Predictions Tab -->
+            <div id="predictions" class="tab-content">
+                <h2 class="section-title">🏆 My Predictions & Stats</h2>
+                
+                <div class="stats-card">
+                    <div class="stats-content">
+                        <div>
+                            <p class="stats-label">Total Points</p>
+                            <p class="stats-value" id="totalPoints">0</p>
+                        </div>
+                        <span class="stats-icon">🏅</span>
+                    </div>
+                </div>
+
+                <div class="predictions-card">
+                    <h3>Your Predictions</h3>
+                    <div id="userPredictionsList"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Stats -->
+        <div class="footer-stats">
+            <p>Points: <span id="footerPoints">0</span> | Predictions Made: <span id="predictionCount">0</span></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>                <div class="countdown-display">
+                    <div class="time-box">
+                        <div class="time-value" id="days">0</div>
+                        <div class="time-label">Days</div>
+                    </div>
+                    <div class="time-box">
+                        <div class="time-value" id="hours">0</div>
+                        <div class="time-label">Hours</div>
+                    </div>
+                    <div class="time-box">
+                        <div class="time-value" id="minutes">0</div>
+                        <div class="time-label">Minutes</div>
+                    </div>
+                    <div class="time-box">
+                        <div class="time-value" id="seconds">0</div>
+                        <div class="time-label">Seconds</div>
+                    </div>
+                </div>
+
+                <!-- Daily Trivia -->
+                <div class="trivia-section">
+                    <h3 class="trivia-title">🧠 Daily Trivia</h3>
+                    <p class="trivia-question" id="triviaQuestion"></p>
+                    <div class="trivia-options" id="triviaOptions"></div>
+                    <div class="trivia-result" id="triviaResult"></div>
+                </div>
+            </div>
+
+            <!-- Schedule Tab -->
+            <div id="schedule" class="tab-content">
+                <h2 class="section-title">📅 Match Schedule</h2>
                 <div id="matchList" class="match-list"></div>
             </div>
 
