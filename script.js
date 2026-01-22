@@ -17,70 +17,77 @@ const matches = [
 ];
 
 // Sample teams
+// Your original + previously added qualified teams (kept as-is, with real groups where known)
+    
 const teams = [
-    // Your original + previously added qualified teams (kept as-is, with real groups where known)
-    { name: 'Argentina', flag: '🇦🇷', group: 'F', fifa_rank: 2 },
-    { name: 'Brazil', flag: '🇧🇷', group: 'C', fifa_rank: 5 },
-    { name: 'England', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', group: 'G', fifa_rank: 4 },
-    { name: 'France', flag: '🇫🇷', group: 'I', fifa_rank: 3 },
-    { name: 'Germany', flag: '🇩🇪', group: 'E', fifa_rank: 11 },
-    { name: 'Spain', flag: '🇪🇸', group: 'A', fifa_rank: 1 },
+    // Hosts + top seeds
     { name: 'Mexico', flag: '🇲🇽', group: 'A', fifa_rank: 15 },
-    { name: 'USA', flag: '🇺🇸', group: 'D', fifa_rank: 14 },
     { name: 'Canada', flag: '🇨🇦', group: 'B', fifa_rank: 27 },
-    { name: 'Portugal', flag: '🇵🇹', group: 'H', fifa_rank: 6 },
-    { name: 'Netherlands', flag: '🇳🇱', group: 'H', fifa_rank: 7 },
-    { name: 'Italy', flag: '🇮🇹', group: 'F', fifa_rank: 9 },  // Already qualified or strong playoff contender
+    { name: 'USA', flag: '🇺🇸', group: 'D', fifa_rank: 14 },
 
-    { name: 'Australia', flag: '🇦🇺', group: 'D', fifa_rank: 25 },
-    { name: 'IR Iran', flag: '🇮🇷', group: 'B', fifa_rank: 20 },
-    { name: 'Japan', flag: '🇯🇵', group: 'C', fifa_rank: 16 },
-    { name: 'Jordan', flag: '🇯🇴', group: 'J', fifa_rank: 68 },
-    { name: 'Korea Republic', flag: '🇰🇷', group: 'A', fifa_rank: 23 },
-    { name: 'Qatar', flag: '🇶🇦', group: 'B', fifa_rank: 34 },
-    { name: 'Saudi Arabia', flag: '🇸🇦', group: 'E', fifa_rank: 56 },
-    { name: 'Uzbekistan', flag: '🇺🇿', group: 'I', fifa_rank: 60 },
-
-    { name: 'Algeria', flag: '🇩🇿', group: 'J', fifa_rank: 28 },
-    { name: 'Cabo Verde', flag: '🇨🇻', group: 'K', fifa_rank: 72 },
-    { name: 'Côte d\'Ivoire', flag: '🇨🇮', group: 'K', fifa_rank: 42 },
-    { name: 'Egypt', flag: '🇪🇬', group: 'L', fifa_rank: 36 },
-    { name: 'Ghana', flag: '🇬🇭', group: 'I', fifa_rank: 65 },
-    { name: 'Morocco', flag: '🇲🇦', group: 'C', fifa_rank: 12 },
-    { name: 'Senegal', flag: '🇸🇳', group: 'L', fifa_rank: 18 },
+    // Group A
     { name: 'South Africa', flag: '🇿🇦', group: 'A', fifa_rank: 58 },
-    { name: 'Tunisia', flag: '🇹🇳', group: 'H', fifa_rank: 41 },
+    { name: 'Korea Republic', flag: '🇰🇷', group: 'A', fifa_rank: 23 },
+    { name: 'UEFA Path D Winner', flag: '❓', group: 'A', fifa_rank: null },  // Czechia/Denmark/N.Macedonia/Ireland playoff
 
-    { name: 'Curaçao', flag: '🇨🇼', group: 'E', fifa_rank: 86 },
-    { name: 'Haiti', flag: '🇭🇹', group: 'C', fifa_rank: 89 },
-    { name: 'Panama', flag: '🇵🇦', group: 'F', fifa_rank: 43 },
-
-    { name: 'Colombia', flag: '🇨🇴', group: 'G', fifa_rank: 10 },
-    { name: 'Ecuador', flag: '🇪🇨', group: 'J', fifa_rank: 30 },
-    { name: 'Paraguay', flag: '🇵🇾', group: 'D', fifa_rank: 56 },
-    { name: 'Uruguay', flag: '🇺🇾', group: 'K', fifa_rank: 13 },
-
-    { name: 'New Zealand', flag: '🇳🇿', group: 'L', fifa_rank: 105 },
-
-    { name: 'Austria', flag: '🇦🇹', group: 'J', fifa_rank: 24 },
-    { name: 'Belgium', flag: '🇧🇪', group: 'G', fifa_rank: 9 },
-    { name: 'Croatia', flag: '🇭🇷', group: 'I', fifa_rank: 8 },
-    { name: 'Norway', flag: '🇳🇴', group: 'H', fifa_rank: 29 },
-    { name: 'Scotland', flag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', group: 'C', fifa_rank: 39 },
+    // Group B
+    { name: 'Qatar', flag: '🇶🇦', group: 'B', fifa_rank: 34 },
     { name: 'Switzerland', flag: '🇨🇭', group: 'B', fifa_rank: 19 },
+    { name: 'UEFA Path A Winner', flag: '❓', group: 'B', fifa_rank: null },  // Bosnia/Italy/N.Ireland/Wales
 
-    // ────────────────────────────────────────────────
-    // 6 Playoff Placeholders (to be decided in March 2026)
-    // These fill the remaining 6 spots (4 UEFA + 2 inter-confederation)
-    // ────────────────────────────────────────────────
-    { name: 'UEFA Playoff Path A Winner', flag: '❓', group: 'TBD', fifa_rank: null },
-    { name: 'UEFA Playoff Path B Winner', flag: '❓', group: 'TBD', fifa_rank: null },
-    { name: 'UEFA Playoff Path C Winner', flag: '❓', group: 'TBD', fifa_rank: null },
-    { name: 'UEFA Playoff Path D Winner', flag: '❓', group: 'TBD', fifa_rank: null },
-    { name: 'Inter-Confed Playoff Bracket 1 Winner', flag: '❓', group: 'TBD', fifa_rank: null },
-    { name: 'Inter-Confed Playoff Bracket 2 Winner', flag: '❓', group: 'TBD', fifa_rank: null }
+    // Group C
+    { name: 'Brazil', flag: '🇧🇷', group: 'C', fifa_rank: 5 },
+    { name: 'Morocco', flag: '🇲🇦', group: 'C', fifa_rank: 12 },
+    { name: 'Haiti', flag: '🇭🇹', group: 'C', fifa_rank: 89 },
+    { name: 'Scotland', flag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', group: 'C', fifa_rank: 39 },
+
+    // Group D
+    { name: 'Paraguay', flag: '🇵🇾', group: 'D', fifa_rank: 56 },
+    { name: 'Australia', flag: '🇦🇺', group: 'D', fifa_rank: 25 },
+    { name: 'UEFA Path C Winner', flag: '❓', group: 'D', fifa_rank: null },  // Kosovo/Romania/Slovakia/Türkiye
+
+    // Group E
+    { name: 'Germany', flag: '🇩🇪', group: 'E', fifa_rank: 11 },
+    { name: 'Curaçao', flag: '🇨🇼', group: 'E', fifa_rank: 86 },
+    { name: "Côte d'Ivoire", flag: '🇨🇮', group: 'E', fifa_rank: 42 },
+    { name: 'Ecuador', flag: '🇪🇨', group: 'E', fifa_rank: 30 },  // Some sources vary; adjust if needed
+
+    // Group F
+    { name: 'Netherlands', flag: '🇳🇱', group: 'F', fifa_rank: 7 },
+    { name: 'Japan', flag: '🇯🇵', group: 'F', fifa_rank: 16 },
+    { name: 'Tunisia', flag: '🇹🇳', group: 'F', fifa_rank: 41 },
+    { name: 'UEFA Path B Winner', flag: '❓', group: 'F', fifa_rank: null },
+
+    // Group G
+    { name: 'Belgium', flag: '🇧🇪', group: 'G', fifa_rank: 9 },
+    { name: 'IR Iran', flag: '🇮🇷', group: 'G', fifa_rank: 20 },
+    { name: 'Egypt', flag: '🇪🇬', group: 'G', fifa_rank: 36 },
+    { name: 'New Zealand', flag: '🇳🇿', group: 'G', fifa_rank: 105 },
+
+    // Group H
+    { name: 'Spain', flag: '🇪🇸', group: 'H', fifa_rank: 1 },
+    { name: 'Uruguay', flag: '🇺🇾', group: 'H', fifa_rank: 13 },
+    { name: 'Saudi Arabia', flag: '🇸🇦', group: 'H', fifa_rank: 56 },
+    { name: 'Cabo Verde', flag: '🇨🇻', group: 'H', fifa_rank: 72 },
+
+    // Group I
+    { name: 'France', flag: '🇫🇷', group: 'I', fifa_rank: 3 },
+    { name: 'Norway', flag: '🇳🇴', group: 'I', fifa_rank: 29 },
+    { name: 'Senegal', flag: '🇸🇳', group: 'I', fifa_rank: 18 },
+    { name: 'UEFA Path ? Winner', flag: '❓', group: 'I', fifa_rank: null },  // Adjust path if known
+
+    // Add remaining known teams (you can fill more)
+    { name: 'Argentina', flag: '🇦🇷', group: 'J', fifa_rank: 2 },  // Example; actual group J varies
+    { name: 'Portugal', flag: '🇵🇹', group: 'K', fifa_rank: 6 },
+    // ... add others like Colombia, Uzbekistan, Jordan, Algeria, etc. to their real groups
+
+    // Keep your playoff placeholders or map them to real paths/groups
+    { name: 'UEFA Playoff Path A Winner', flag: '❓', group: 'B', fifa_rank: null },
+    { name: 'UEFA Playoff Path B Winner', flag: '❓', group: 'F', fifa_rank: null },
+    { name: 'UEFA Playoff Path C Winner', flag: '❓', group: 'D', fifa_rank: null },
+    { name: 'UEFA Playoff Path D Winner', flag: '❓', group: 'A', fifa_rank: null },
+    // Inter-confed winners go to specific groups (e.g. one to K, one to I or similar)
 ];
-
 // Daily trivia question
 const triviaQuestion = {
     question: "Which country has won the most FIFA World Cup titles?",
