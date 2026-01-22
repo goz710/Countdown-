@@ -20,20 +20,17 @@ const matches = [
 // Your original + previously added qualified teams (kept as-is, with real groups where known)
     
 const teams = [
-    // Hosts + top seeds
-    { name: 'Mexico', flag: '🇲🇽', group: 'A', fifa_rank: 15 },
-    { name: 'Canada', flag: '🇨🇦', group: 'B', fifa_rank: 27 },
-    { name: 'USA', flag: '🇺🇸', group: 'D', fifa_rank: 14 },
-
     // Group A
+    { name: 'Mexico', flag: '🇲🇽', group: 'A', fifa_rank: 15 },
     { name: 'South Africa', flag: '🇿🇦', group: 'A', fifa_rank: 58 },
     { name: 'Korea Republic', flag: '🇰🇷', group: 'A', fifa_rank: 23 },
-    { name: 'UEFA Path D Winner', flag: '❓', group: 'A', fifa_rank: null },  // Czechia/Denmark/N.Macedonia/Ireland playoff
+    { name: 'UEFA Path D Winner', flag: '❓', group: 'A', fifa_rank: null },  // Czechia/Denmark/N.Macedonia/Ireland
 
     // Group B
+    { name: 'Canada', flag: '🇨🇦', group: 'B', fifa_rank: 27 },
+    { name: 'UEFA Path A Winner', flag: '❓', group: 'B', fifa_rank: null },  // Bosnia/Italy/N.Ireland/Wales
     { name: 'Qatar', flag: '🇶🇦', group: 'B', fifa_rank: 34 },
     { name: 'Switzerland', flag: '🇨🇭', group: 'B', fifa_rank: 19 },
-    { name: 'UEFA Path A Winner', flag: '❓', group: 'B', fifa_rank: null },  // Bosnia/Italy/N.Ireland/Wales
 
     // Group C
     { name: 'Brazil', flag: '🇧🇷', group: 'C', fifa_rank: 5 },
@@ -42,6 +39,7 @@ const teams = [
     { name: 'Scotland', flag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', group: 'C', fifa_rank: 39 },
 
     // Group D
+    { name: 'USA', flag: '🇺🇸', group: 'D', fifa_rank: 14 },
     { name: 'Paraguay', flag: '🇵🇾', group: 'D', fifa_rank: 56 },
     { name: 'Australia', flag: '🇦🇺', group: 'D', fifa_rank: 25 },
     { name: 'UEFA Path C Winner', flag: '❓', group: 'D', fifa_rank: null },  // Kosovo/Romania/Slovakia/Türkiye
@@ -50,7 +48,7 @@ const teams = [
     { name: 'Germany', flag: '🇩🇪', group: 'E', fifa_rank: 11 },
     { name: 'Curaçao', flag: '🇨🇼', group: 'E', fifa_rank: 86 },
     { name: "Côte d'Ivoire", flag: '🇨🇮', group: 'E', fifa_rank: 42 },
-    { name: 'Ecuador', flag: '🇪🇨', group: 'E', fifa_rank: 30 },  // Some sources vary; adjust if needed
+    { name: 'Ecuador', flag: '🇪🇨', group: 'E', fifa_rank: 30 },
 
     // Group F
     { name: 'Netherlands', flag: '🇳🇱', group: 'F', fifa_rank: 7 },
@@ -70,23 +68,21 @@ const teams = [
     { name: 'Saudi Arabia', flag: '🇸🇦', group: 'H', fifa_rank: 56 },
     { name: 'Cabo Verde', flag: '🇨🇻', group: 'H', fifa_rank: 72 },
 
-    // Group I
+    // Partial / example for remaining groups (add more as you expand)
     { name: 'France', flag: '🇫🇷', group: 'I', fifa_rank: 3 },
     { name: 'Norway', flag: '🇳🇴', group: 'I', fifa_rank: 29 },
     { name: 'Senegal', flag: '🇸🇳', group: 'I', fifa_rank: 18 },
-    { name: 'UEFA Path ? Winner', flag: '❓', group: 'I', fifa_rank: null },  // Adjust path if known
-
-    // Add remaining known teams (you can fill more)
-    { name: 'Argentina', flag: '🇦🇷', group: 'J', fifa_rank: 2 },  // Example; actual group J varies
+    { name: 'Argentina', flag: '🇦🇷', group: 'J', fifa_rank: 2 },
     { name: 'Portugal', flag: '🇵🇹', group: 'K', fifa_rank: 6 },
-    // ... add others like Colombia, Uzbekistan, Jordan, Algeria, etc. to their real groups
+    { name: 'Algeria', flag: '🇩🇿', group: 'J', fifa_rank: 28 },
+    { name: 'Jordan', flag: '🇯🇴', group: 'J', fifa_rank: 68 },
+    { name: 'England', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', group: 'L', fifa_rank: 4 },
+    { name: 'Croatia', flag: '🇭🇷', group: 'L', fifa_rank: 8 },
+    { name: 'Ghana', flag: '🇬🇭', group: 'L', fifa_rank: 65 },
+    { name: 'Panama', flag: '🇵🇦', group: 'L', fifa_rank: 43 },
 
-    // Keep your playoff placeholders or map them to real paths/groups
-    { name: 'UEFA Playoff Path A Winner', flag: '❓', group: 'B', fifa_rank: null },
-    { name: 'UEFA Playoff Path B Winner', flag: '❓', group: 'F', fifa_rank: null },
-    { name: 'UEFA Playoff Path C Winner', flag: '❓', group: 'D', fifa_rank: null },
-    { name: 'UEFA Playoff Path D Winner', flag: '❓', group: 'A', fifa_rank: null },
-    // Inter-confed winners go to specific groups (e.g. one to K, one to I or similar)
+    // Remaining UEFA / inter-confed placeholders (adjust groups as needed)
+    { name: 'UEFA Playoff Path Remaining Winner(s)', flag: '❓', group: 'I', fifa_rank: null }
 ];
 // Daily trivia question
 const triviaQuestion = {
