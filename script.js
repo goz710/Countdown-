@@ -266,6 +266,7 @@ function renderTeams() {
 // Helper: Group teams by group letter and sort by FIFA rank (better rank first)
 function getTeamsByGroup() {
     const groups = {};
+    console.log("Group team counts:", Object.fromEntries(Object.entries(grouped).map(([k,v]) => [k, v.length])));
 
     // Initialize empty arrays for groups A–L
     for (let i = 65; i <= 76; i++) {  // A = 65, L = 76
