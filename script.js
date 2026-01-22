@@ -249,9 +249,6 @@ function renderTeams() {
             <div class="team-name-card">${team.name}</div>
             <div class="team-group">Group ${team.group}</div>
             <div class="team-rank">FIFA Rank: #${team.fifa_rank}</div>
-            <div class="team-rank">
-                \( {team.fifa_rank !== null ? `FIFA Rank: # \){team.fifa_rank}` : 'Playoff TBD'}
-            </div>
         `;
         teamsList.appendChild(teamCard);
     });
