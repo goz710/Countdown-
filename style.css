@@ -1,40 +1,866 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to bottom, #1e3c72, #2a5298);
-    color: #fff;
-    text-align: center;
+* {
     margin: 0;
     padding: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+    box-sizing: border-box;
 }
 
-.navbar {
-    background-color: rgba(0, 0, 0, 0.5);
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(to bottom, #f0fdf4, #dbeafe);
+    min-height: 100vh;
     padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Navigation Tabs */
+.nav-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    background: white;
+    color: #374151;
+    transition: all 0.3s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.tab-btn:hover {
+    background: #d1fae5;
+    transform: translateY(-2px);
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    color: white;
+    box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+}
+
+.icon {
+    font-size: 20px;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    margin-bottom: 30px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Countdown Section */
+.countdown-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.countdown-header h1 {
+    font-size: 48px;
+    color: #15803d;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    font-size: 20px;
+    color: #6b7280;
+}
+
+.countdown-display {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto 50px;
+}
+
+.time-box {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+}
+
+.time-value {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.time-label {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-top: 8px;
+    opacity: 0.9;
+}
+
+/* Trivia Section */
+.trivia-section {
+    background: #eff6ff;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.trivia-title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1e40af;
+}
+
+.trivia-question {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 24px;
+    color: #1f2937;
+}
+
+.trivia-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.trivia-option {
+    padding: 16px;
+    border: 2px solid #3b82f6;
+    background: white;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.trivia-option:hover:not(.disabled) {
+    background: #dbeafe;
+    transform: translateY(-2px);
+}
+
+.trivia-option.correct {
+    background: #22c55e;
+    color: white;
+    border-color: #22c55e;
+}
+
+.trivia-option.incorrect {
+    background: #ef4444;
+    color: white;
+    border-color: #ef4444;
+}
+
+.trivia-option.disabled {
+    background: #e5e7eb;
+    cursor: not-allowed;
+}
+
+.trivia-result {
+    margin-top: 20px;
+    padding: 16px;
+    background: #d1fae5;
+    border-radius: 8px;
+    display: none;
+}
+
+.trivia-result.show {
+    display: block;
+}
+
+.trivia-result p {
+    color: #065f46;
+    font-weight: 500;
+}
+
+/* Section Title */
+.section-title {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #1f2937;
+}
+
+/* Match List */
+.match-list {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.match-card {
+    background: white;
+    border-left: 4px solid #16a34a;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.match-header {
+    margin-bottom: 16px;
+}
+
+.match-badge {
+    display: inline-block;
+    background: #d1fae5;
+    color: #065f46;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.match-info {
+    color: #6b7280;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.match-teams {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.team-name {
+    font-size: 24px;
+    font-weight: bold;
+    flex: 1;
+    text-align: center;
+}
+
+.vs-text {
+    font-size: 28px;
+    font-weight: bold;
+    color: #9ca3af;
+    padding: 0 20px;
+}
+
+.prediction-section {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 16px;
+}
+
+.prediction-label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.prediction-inputs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.score-input {
+    width: 64px;
+    padding: 10px;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.prediction-dash {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.submit-prediction {
+    background: #16a34a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.submit-prediction:hover {
+    background: #15803d;
+}
+
+/* Teams Grid */
+.teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.team-card {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.team-card:hover {
+    border-color: #16a34a;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+}
+
+.team-flag {
+    font-size: 64px;
+    margin-bottom: 12px;
+}
+
+.team-name-card {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.team-group {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+.team-rank {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+/* Stats Card */
+.stats-card {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.stats-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: white;
 }
 
-.navbar ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.stats-label {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+
+.stats-value {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.stats-icon {
+    font-size: 64px;
+    opacity: 0.8;
+}
+
+/* Predictions Card */
+.predictions-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.predictions-card h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#userPredictionsList {
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.navbar a {
-    color: #fff;
-    text-decoration: none;
-    transition: color 00.2s ease;
+.prediction-item {
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 12px;
 }
 
-.navbar a:hover {
-    color: #ccc;
+.prediction-match {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 4px;
 }
+
+.prediction-score {
+    font-weight: bold;
+    color: #16a34a;
+    font-size: 16px;
+}
+
+.no-predictions {
+    text-align: center;
+    color: #9ca3af;
+    padding: 40px;
+}
+
+/* Footer Stats */
+.footer-stats {
+    text-align: center;
+    color: #6b7280;
+    padding: 20px;
+}
+
+.footer-stats p {
+    font-size: 14px;
+}
+
+/* ============================================ */
+/* RESPONSIVE DESIGN - ALL DEVICES */
+/* ============================================ */
+
+/* Large Tablets and Small Laptops (1024px and below) */
+@media (max-width: 1024px) {
+    .countdown-header h1 {
+        font-size: 40px;
+    }
+    
+    .section-title {
+        font-size: 32px;
+    }
+    
+    .teams-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 16px;
+    }
+    
+    .content-wrapper {
+        padding: 30px;
+    }
+}
+
+/* Tablets (768px and below) */
+@media (max-width: 768px) {
+    body {
+        padding: 12px;
+    }
+    
+    /* Navigation tabs */
+    .nav-tabs {
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+    
+    .tab-btn {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+    
+    .icon {
+        font-size: 18px;
+    }
+    
+    /* Content wrapper */
+    .content-wrapper {
+        padding: 20px;
+        border-radius: 12px;
+    }
+    
+    /* Countdown section */
+    .countdown-header h1 {
+        font-size: 32px;
+    }
+    
+    .subtitle {
+        font-size: 16px;
+    }
+    
+    .countdown-display {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-bottom: 30px;
+    }
+    
+    .time-box {
+        padding: 20px;
+    }
+    
+    .time-value {
+        font-size: 36px;
+    }
+    
+    .time-label {
+        font-size: 12px;
+    }
+    
+    /* Trivia section */
+    .trivia-section {
+        padding: 20px;
+    }
+    
+    .trivia-title {
+        font-size: 20px;
+    }
+    
+    .trivia-question {
+        font-size: 16px;
+    }
+    
+    .trivia-options {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .trivia-option {
+        padding: 14px;
+    }
+    
+    /* Section titles */
+    .section-title {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+    
+    /* Match cards */
+    .match-card {
+        padding: 16px;
+    }
+    
+    .team-name {
+        font-size: 18px;
+    }
+    
+    .vs-text {
+        font-size: 20px;
+        padding: 0 10px;
+    }
+    
+    .prediction-inputs {
+        gap: 12px;
+    }
+    
+    /* Teams grid */
+    .teams-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 12px;
+    }
+    
+    .team-flag {
+        font-size: 48px;
+    }
+    
+    .team-name-card {
+        font-size: 16px;
+    }
+    
+    /* Stats card */
+    .stats-card {
+        padding: 20px;
+    }
+    
+    .stats-value {
+        font-size: 36px;
+    }
+    
+    .stats-icon {
+        font-size: 48px;
+    }
+    
+    /* Predictions card */
+    .predictions-card {
+        padding: 20px;
+    }
+    
+    .predictions-card h3 {
+        font-size: 20px;
+    }
+}
+
+/* Mobile Phones (480px and below) */
+@media (max-width: 480px) {
+    body {
+        padding: 8px;
+    }
+    
+    /* Navigation */
+    .nav-tabs {
+        gap: 6px;
+        margin-bottom: 16px;
+    }
+    
+    .tab-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+        flex: 1 1 auto;
+    }
+    
+    .icon {
+        font-size: 16px;
+    }
+    
+    /* Content wrapper */
+    .content-wrapper {
+        padding: 16px;
+        border-radius: 8px;
+    }
+    
+    /* Countdown */
+    .countdown-header h1 {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+    
+    .subtitle {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+    
+    .countdown-display {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        margin-bottom: 24px;
+    }
+    
+    .time-box {
+        padding: 16px 10px;
+    }
+    
+    .time-value {
+        font-size: 28px;
+    }
+    
+    .time-label {
+        font-size: 10px;
+        margin-top: 4px;
+    }
+    
+    /* Trivia */
+    .trivia-section {
+        padding: 16px;
+    }
+    
+    .trivia-title {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+    
+    .trivia-question {
+        font-size: 14px;
+        margin-bottom: 16px;
+    }
+    
+    .trivia-option {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .trivia-result {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    /* Section titles */
+    .section-title {
+        font-size: 22px;
+        margin-bottom: 16px;
+    }
+    
+    /* Match cards */
+    .match-card {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+    
+    .match-badge {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+    
+    .match-info {
+        font-size: 12px;
+    }
+    
+    .match-teams {
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+    
+    .team-name {
+        font-size: 16px;
+    }
+    
+    .vs-text {
+        font-size: 16px;
+        padding: 4px 0;
+    }
+    
+    .prediction-label {
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+    
+    .prediction-inputs {
+        gap: 8px;
+    }
+    
+    .score-input {
+        width: 56px;
+        padding: 8px;
+        font-size: 14px;
+    }
+    
+    .prediction-dash {
+        font-size: 16px;
+    }
+    
+    .submit-prediction {
+        padding: 8px 16px;
+        font-size: 14px;
+        width: 100%;
+        margin-top: 8px;
+    }
+    
+    /* Teams grid */
+    .teams-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .team-card {
+        padding: 12px;
+    }
+    
+    .team-flag {
+        font-size: 40px;
+        margin-bottom: 8px;
+    }
+    
+    .team-name-card {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+    
+    .team-group {
+        font-size: 12px;
+    }
+    
+    .team-rank {
+        font-size: 11px;
+    }
+    
+    /* Stats card */
+    .stats-card {
+        padding: 16px;
+    }
+    
+    .stats-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+    
+    .stats-value {
+        font-size: 32px;
+    }
+    
+    .stats-icon {
+        font-size: 40px;
+    }
+    
+    /* Predictions card */
+    .predictions-card {
+        padding: 16px;
+    }
+    
+    .predictions-card h3 {
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+    
+    .prediction-item {
+        padding-bottom: 10px;
+    }
+    
+    .prediction-match {
+        font-size: 13px;
+    }
+    
+    .prediction-score {
+        font-size: 14px;
+    }
+    
+    .no-predictions {
+        padding: 30px 16px;
+        font-size: 14px;
+    }
+    
+    /* Footer */
+    .footer-stats p {
+        font-size: 12px;
+    }
+}
+
+/* Extra Small Devices (360px and below) */
+@media (max-width: 360px) {
+    .countdown-header h1 {
+        font-size: 20px;
+    }
+    
+    .subtitle {
+        font-size: 12px;
+    }
+    
+    .time-value {
+        font-size: 24px;
+    }
+    
+    .tab-btn {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+    
+    .section-title {
+        font-size: 20px;
+    }
+    
+    .team-name {
+        font-size: 14px;
+    }
+    }}
 
 .countdown-wrapper {
     flex-grow: 1;
